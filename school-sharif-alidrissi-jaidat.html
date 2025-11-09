@@ -1,0 +1,1358 @@
+<!DOCTYPE html>  
+<html lang="ar" dir="rtl">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>ثانوية الشريف الإدريسي - الجعيدات، رحامنة، مراكش</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">  
+    <style>  
+        * {  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+        }  
+  
+        :root {  
+            --royal-blue: #1e3a8a;  
+            --royal-blue-dark: #1e40af;  
+            --white: #ffffff;  
+            --gold: #f59e0b;  
+            --gold-light: #fbbf24;  
+            --gold-dark: #d97706;  
+            --text-light: #e5e7eb;  
+            --text-dark: #1f2937;  
+            --accent-glow: 0 0 30px rgba(245, 158, 11, 0.4);  
+        }  
+  
+        body {  
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+            background: linear-gradient(135deg, var(--royal-blue) 0%, #0f172a 100%);  
+            color: var(--white);  
+            line-height: 1.6;  
+            overflow-x: hidden;  
+            position: relative;  
+        }  
+  
+        /* Enhanced Floating Elements */  
+        .floating-icons {  
+            position: fixed;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            pointer-events: none;  
+            z-index: -1;  
+        }  
+  
+        .floating-icon {  
+            position: absolute;  
+            font-size: 28px;  
+            color: var(--gold);  
+            opacity: 0.6;  
+            animation: float 8s ease-in-out infinite;  
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);  
+        }  
+  
+        @keyframes float {  
+            0%, 100% { transform: translateY(0px) rotate(0deg); }  
+            50% { transform: translateY(-25px) rotate(180deg); }  
+        }  
+  
+        /* Animated Background Particles */  
+        .particles {  
+            position: fixed;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            z-index: -2;  
+            opacity: 0.3;  
+        }  
+  
+        .particle {  
+            position: absolute;  
+            width: 2px;  
+            height: 2px;  
+            background: var(--gold);  
+            border-radius: 50%;  
+            animation: particle-float 15s infinite linear;  
+        }  
+  
+        @keyframes particle-float {  
+            0% { transform: translateY(0) translateX(0); opacity: 0; }  
+            10% { opacity: 1; }  
+            90% { opacity: 1; }  
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }  
+        }  
+  
+        /* Header Styles */  
+        header {  
+            position: fixed;  
+            top: 0;  
+            width: 100%;  
+            background: rgba(30, 58, 138, 0.95);  
+            backdrop-filter: blur(12px);  
+            border-bottom: 1px solid rgba(245, 158, 11, 0.4);  
+            z-index: 1000;  
+            padding: 1.2rem 2rem;  
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  
+        }  
+  
+        .header-container {  
+            display: flex;  
+            justify-content: space-between;  
+            align-items: center;  
+            max-width: 1200px;  
+            margin: 0 auto;  
+        }  
+  
+        .logo {  
+            font-size: 1.8rem;  
+            font-weight: 800;  
+            color: var(--gold);  
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);  
+            letter-spacing: 1px;  
+            background: linear-gradient(to right, var(--gold), var(--gold-light));  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+        }  
+  
+        nav ul {  
+            display: flex;  
+            list-style: none;  
+            gap: 2.2rem;  
+        }  
+  
+        nav a {  
+            color: var(--white);  
+            text-decoration: none;  
+            font-weight: 600;  
+            padding: 0.6rem 1.2rem;  
+            border-radius: 10px;  
+            transition: all 0.3s ease;  
+            position: relative;  
+            font-size: 1.05rem;  
+        }  
+  
+        nav a::after {  
+            content: '';  
+            position: absolute;  
+            bottom: 0;  
+            left: 50%;  
+            transform: translateX(-50%);  
+            width: 0;  
+            height: 2px;  
+            background: var(--gold);  
+            transition: width 0.3s ease;  
+        }  
+  
+        nav a:hover, nav a.active {  
+            color: var(--gold);  
+            background: rgba(245, 158, 11, 0.1);  
+            transform: translateY(-3px);  
+            box-shadow: var(--accent-glow);  
+        }  
+  
+        nav a:hover::after, nav a.active::after {  
+            width: 80%;  
+        }  
+  
+        .menu-toggle {  
+            display: none;  
+            background: none;  
+            border: none;  
+            color: var(--white);  
+            font-size: 1.8rem;  
+            cursor: pointer;  
+            padding: 0.5rem;  
+            border-radius: 8px;  
+            transition: all 0.3s ease;  
+        }  
+  
+        .menu-toggle:hover {  
+            background: rgba(245, 158, 11, 0.2);  
+            color: var(--gold);  
+        }  
+  
+        /* Hero Section */  
+        .hero {  
+            min-height: 100vh;  
+            display: flex;  
+            align-items: center;  
+            padding: 9rem 2rem 5rem;  
+            position: relative;  
+            overflow: hidden;  
+        }  
+  
+        .hero-content {  
+            max-width: 1200px;  
+            margin: 0 auto;  
+            display: grid;  
+            grid-template-columns: 1fr 1fr;  
+            gap: 5rem;  
+            align-items: center;  
+        }  
+  
+        .hero-text h1 {  
+            font-size: 4rem;  
+            font-weight: 800;  
+            margin-bottom: 1.5rem;  
+            background: linear-gradient(to right, var(--gold), var(--gold-light));  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);  
+            line-height: 1.2;  
+            letter-spacing: -0.5px;  
+        }  
+  
+        .hero-text p {  
+            font-size: 1.4rem;  
+            margin-bottom: 2.5rem;  
+            color: var(--text-light);  
+            font-weight: 300;  
+        }  
+  
+        .motto {  
+            font-style: italic;  
+            font-size: 1.8rem;  
+            color: var(--gold);  
+            margin: 2.5rem 0;  
+            text-align: center;  
+            font-weight: 700;  
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);  
+            position: relative;  
+        }  
+  
+        .motto::before, .motto::after {  
+            content: '"';  
+            font-size: 2.5rem;  
+            color: var(--gold-light);  
+            opacity: 0.8;  
+        }  
+  
+        .levels {  
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(245, 158, 11, 0.1));  
+            padding: 2rem;  
+            border-radius: 20px;  
+            margin: 2.5rem 0;  
+            border: 2px solid rgba(245, 158, 11, 0.3);  
+            backdrop-filter: blur(10px);  
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);  
+        }  
+  
+        .levels h3 {  
+            color: var(--gold);  
+            margin-bottom: 1.5rem;  
+            text-align: center;  
+            font-size: 1.6rem;  
+            font-weight: 700;  
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);  
+        }  
+  
+        .levels-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));  
+            gap: 1.2rem;  
+            text-align: center;  
+        }  
+  
+        .level-item {  
+            background: rgba(30, 58, 138, 0.5);  
+            padding: 1rem;  
+            border-radius: 12px;  
+            font-weight: 600;  
+            transition: all 0.4s ease;  
+            border: 1px solid rgba(255, 255, 255, 0.1);  
+            backdrop-filter: blur(5px);  
+        }  
+  
+        .level-item:hover {  
+            background: rgba(245, 158, 11, 0.25);  
+            transform: translateY(-4px) scale(1.05);  
+            border-color: var(--gold);  
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);  
+        }  
+  
+        .registration-notice {  
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.15));  
+            padding: 2rem;  
+            border-radius: 20px;  
+            margin: 2.5rem 0;  
+            border: 3px solid var(--gold);  
+            text-align: center;  
+            animation: pulse 2s infinite;  
+            backdrop-filter: blur(10px);  
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);  
+        }  
+  
+        @keyframes pulse {  
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }  
+            70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }  
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }  
+        }  
+  
+        .registration-notice h3 {  
+            color: var(--gold);  
+            margin-bottom: 0.8rem;  
+            font-size: 1.5rem;  
+            font-weight: 700;  
+        }  
+  
+        .registration-notice p {  
+            font-size: 1.3rem;  
+            font-weight: 600;  
+            color: var(--white);  
+        }  
+  
+        .btn {  
+            display: inline-block;  
+            padding: 1.2rem 2.5rem;  
+            border-radius: 50px;  
+            text-decoration: none;  
+            font-weight: 700;  
+            margin: 0.6rem;  
+            transition: all 0.4s ease;  
+            border: 2px solid transparent;  
+            font-size: 1.1rem;  
+            letter-spacing: 0.5px;  
+            position: relative;  
+            overflow: hidden;  
+        }  
+  
+        .btn::before {  
+            content: '';  
+            position: absolute;  
+            top: 0;  
+            left: -100%;  
+            width: 100%;  
+            height: 100%;  
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);  
+            transition: 0.5s;  
+        }  
+  
+        .btn:hover::before {  
+            left: 100%;  
+        }  
+  
+        .btn-primary {  
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));  
+            color: var(--royal-blue);  
+            box-shadow: var(--accent-glow);  
+        }  
+  
+        .btn-primary:hover {  
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));  
+            transform: translateY(-5px);  
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);  
+        }  
+  
+        .btn-secondary {  
+            background: transparent;  
+            color: var(--gold);  
+            border-color: var(--gold);  
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);  
+        }  
+  
+        .btn-secondary:hover {  
+            background: rgba(245, 158, 11, 0.15);  
+            transform: translateY(-5px);  
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);  
+        }  
+  
+        .hero-3d {  
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));  
+            border-radius: 25px;  
+            padding: 2.5rem;  
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);  
+            border: 2px solid rgba(245, 158, 11, 0.3);  
+            backdrop-filter: blur(15px);  
+            height: 450px;  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            overflow: hidden;  
+            position: relative;  
+            animation: float 6s ease-in-out infinite;  
+        }  
+  
+        .hero-3d::before {  
+            content: '';  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            background: radial-gradient(circle at 30% 30%, rgba(245, 158, 11, 0.1), transparent 70%);  
+            pointer-events: none;  
+        }  
+  
+        .school-building {  
+            width: 100%;  
+            height: 100%;  
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);  
+            border-radius: 15px;  
+            position: relative;  
+            animation: rotateBuilding 25s linear infinite;  
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);  
+        }  
+  
+        @keyframes rotateBuilding {  
+            0% { transform: rotateY(0deg); }  
+            100% { transform: rotateY(360deg); }  
+        }  
+  
+        .building-main {  
+            width: 65%;  
+            height: 75%;  
+            background: var(--royal-blue);  
+            margin: 12% auto;  
+            position: relative;  
+            border-radius: 15px;  
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);  
+        }  
+  
+        .building-roof {  
+            width: 75%;  
+            height: 22%;  
+            background: linear-gradient(to bottom, var(--gold), var(--gold-dark));  
+            margin: -12% auto 0;  
+            border-radius: 15px 15px 0 0;  
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);  
+        }  
+  
+        .window {  
+            position: absolute;  
+            width: 16%;  
+            height: 28%;  
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));  
+            border-radius: 5px;  
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);  
+        }  
+  
+        .window:nth-child(1) { top: 18%; left: 14%; }  
+        .window:nth-child(2) { top: 18%; left: 42%; }  
+        .window:nth-child(3) { top: 18%; left: 70%; }  
+        .window:nth-child(4) { top: 52%; left: 14%; }  
+        .window:nth-child(5) { top: 52%; left: 42%; }  
+        .window:nth-child(6) { top: 52%; left: 70%; }  
+  
+        .student {  
+            position: absolute;  
+            width: 9%;  
+            height: 14%;  
+            background: linear-gradient(135deg, #ef4444, #b91c1c);  
+            border-radius: 50%;  
+            bottom: 0;  
+            animation: walkStudent 10s linear infinite;  
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);  
+        }  
+  
+        .student:nth-child(7) {   
+            background: linear-gradient(135deg, #10b981, #047857);   
+            left: 82%;   
+            animation-delay: 5s;  
+            width: 10%;  
+            height: 15%;  
+        }  
+  
+        @keyframes walkStudent {  
+            0% { transform: translateX(-110%); }  
+            100% { transform: translateX(110%); }  
+        }  
+  
+        /* Section Styles */  
+        section {  
+            padding: 7rem 2rem;  
+            max-width: 1200px;  
+            margin: 0 auto;  
+            position: relative;  
+        }  
+  
+        .section-title {  
+            text-align: center;  
+            margin-bottom: 5rem;  
+            position: relative;  
+        }  
+  
+        .section-title h2 {  
+            font-size: 3rem;  
+            font-weight: 800;  
+            color: var(--gold);  
+            margin-bottom: 1.2rem;  
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);  
+            background: linear-gradient(to right, var(--gold), var(--gold-light));  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+        }  
+  
+        .section-title::after {  
+            content: '';  
+            position: absolute;  
+            bottom: -15px;  
+            left: 50%;  
+            transform: translateX(-50%);  
+            width: 100px;  
+            height: 4px;  
+            background: linear-gradient(to right, transparent, var(--gold), transparent);  
+            border-radius: 2px;  
+        }  
+  
+        /* About Section */  
+        .about-content {  
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));  
+            padding: 3.5rem;  
+            border-radius: 25px;  
+            border: 2px solid rgba(245, 158, 11, 0.3);  
+            backdrop-filter: blur(15px);  
+            max-width: 900px;  
+            margin: 0 auto;  
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);  
+        }  
+  
+        .about-content p {  
+            margin-bottom: 2rem;  
+            font-size: 1.2rem;  
+            line-height: 2;  
+            color: var(--text-light);  
+            font-weight: 300;  
+        }  
+  
+        .schedule {  
+            text-align: center;  
+            margin-top: 2.5rem;  
+            padding: 2rem;  
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));  
+            border-radius: 20px;  
+            border: 2px solid var(--gold);  
+            backdrop-filter: blur(10px);  
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);  
+        }  
+  
+        .schedule h3 {  
+            font-size: 1.7rem;  
+            color: var(--gold);  
+            margin-bottom: 0.8rem;  
+            font-weight: 700;  
+        }  
+  
+        .schedule p {  
+            font-size: 1.3rem;  
+            font-weight: 600;  
+        }  
+  
+        /* General Info Section */  
+        .general-info {  
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));  
+            padding: 3.5rem;  
+            border-radius: 25px;  
+            border: 2px solid rgba(245, 158, 11, 0.3);  
+            backdrop-filter: blur(15px);  
+            margin-top: 3.5rem;  
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);  
+        }  
+  
+        .info-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+            gap: 2.5rem;  
+            margin-top: 2.5rem;  
+        }  
+  
+        .info-item {  
+            text-align: center;  
+            padding: 2rem;  
+            background: rgba(30, 58, 138, 0.4);  
+            border-radius: 20px;  
+            transition: all 0.4s ease;  
+            border: 1px solid rgba(255, 255, 255, 0.1);  
+            backdrop-filter: blur(10px);  
+        }  
+  
+        .info-item:hover {  
+            transform: translateY(-8px) scale(1.03);  
+            background: rgba(245, 158, 11, 0.2);  
+            border: 2px solid var(--gold);  
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);  
+        }  
+  
+        .info-item i {  
+            font-size: 3rem;  
+            color: var(--gold);  
+            margin-bottom: 1.5rem;  
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.5);  
+        }  
+  
+        .info-item h3 {  
+            color: var(--gold);  
+            margin-bottom: 1rem;  
+            font-size: 1.4rem;  
+            font-weight: 700;  
+        }  
+  
+        .info-item p {  
+            color: var(--text-light);  
+            font-size: 1.1rem;  
+            line-height: 1.6;  
+            font-weight: 300;  
+        }  
+  
+        /* Cards Section */  
+        .cards {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));  
+            gap: 2.5rem;  
+            margin-top: 2.5rem;  
+        }  
+  
+        .card {  
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.7));  
+            padding: 2.5rem;  
+            border-radius: 20px;  
+            border: 2px solid rgba(245, 158, 11, 0.25);  
+            backdrop-filter: blur(12px);  
+            transition: all 0.4s ease;  
+            text-align: center;  
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);  
+        }  
+  
+        .card:hover {  
+            transform: translateY(-12px);  
+            border-color: var(--gold);  
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3);  
+        }  
+  
+        .card i {  
+            font-size: 3.5rem;  
+            color: var(--gold);  
+            margin-bottom: 1.8rem;  
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.6);  
+        }  
+  
+        .card h3 {  
+            font-size: 1.6rem;  
+            margin-bottom: 1.2rem;  
+            color: var(--gold);  
+            font-weight: 700;  
+        }  
+  
+        .card p {  
+            color: var(--text-light);  
+            line-height: 1.8;  
+            font-weight: 300;  
+        }  
+  
+        /* News Section */  
+        .news-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));  
+            gap: 2.5rem;  
+        }  
+  
+        .news-item {  
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.7));  
+            padding: 2.5rem;  
+            border-radius: 20px;  
+            border: 2px solid rgba(245, 158, 11, 0.25);  
+            backdrop-filter: blur(12px);  
+            transition: all 0.4s ease;  
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);  
+        }  
+  
+        .news-item:hover {  
+            transform: translateY(-8px);  
+            border-color: var(--gold);  
+            box-shadow: 0 20px 35px rgba(245, 158, 11, 0.3);  
+        }  
+  
+        .news-date {  
+            display: flex;  
+            align-items: center;  
+            color: var(--gold);  
+            margin-bottom: 1.2rem;  
+            font-weight: 600;  
+            font-size: 1.1rem;  
+        }  
+  
+        .news-date i {  
+            margin-left: 0.8rem;  
+            font-size: 1.2rem;  
+        }  
+  
+        .news-item h3 {  
+            font-size: 1.4rem;  
+            margin-bottom: 1.2rem;  
+            color: var(--gold);  
+            font-weight: 700;  
+        }  
+  
+        .news-item p {  
+            color: var(--text-light);  
+            line-height: 1.8;  
+            font-weight: 300;  
+        }  
+  
+        /* Gallery Section */  
+        .gallery {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  
+            gap: 1.5rem;  
+        }  
+  
+        .gallery-item {  
+            aspect-ratio: 1;  
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);  
+            border-radius: 15px;  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            color: var(--gold);  
+            font-size: 2.5rem;  
+            transition: all 0.4s ease;  
+            cursor: pointer;  
+            border: 3px solid transparent;  
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);  
+            position: relative;  
+            overflow: hidden;  
+        }  
+  
+        .gallery-item::before {  
+            content: '';  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            background: linear-gradient(45deg, transparent, rgba(245, 158, 11, 0.3), transparent);  
+            transform: translateX(-100%);  
+            transition: transform 0.5s ease;  
+        }  
+  
+        .gallery-item:hover::before {  
+            transform: translateX(100%);  
+        }  
+  
+        .gallery-item:hover {  
+            transform: scale(1.08) rotate(2deg);  
+            border-color: var(--gold);  
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);  
+        }  
+  
+        /* Contact Section */  
+        .contact-container {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));  
+            gap: 3.5rem;  
+            margin-top: 2.5rem;  
+        }  
+  
+        .contact-info {  
+            display: flex;  
+            flex-direction: column;  
+            gap: 2rem;  
+        }  
+  
+        .contact-item {  
+            display: flex;  
+            align-items: center;  
+            gap: 1.5rem;  
+            padding: 1.8rem;  
+            background: rgba(30, 58, 138, 0.4);  
+            border-radius: 20px;  
+            transition: all 0.3s ease;  
+            border: 1px solid rgba(255, 255, 255, 0.1);  
+        }  
+  
+        .contact-item:hover {  
+            background: rgba(245, 158, 11, 0.2);  
+            transform: translateY(-5px);  
+            border-color: var(--gold);  
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);  
+        }  
+  
+        .contact-item i {  
+            font-size: 2rem;  
+            color: var(--gold);  
+            width: 60px;  
+            height: 60px;  
+            background: rgba(245, 158, 11, 0.2);  
+            border-radius: 50%;  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.5);  
+        }  
+  
+        .contact-details h3 {  
+            font-size: 1.3rem;  
+            color: var(--gold);  
+            margin-bottom: 0.5rem;  
+            font-weight: 700;  
+        }  
+  
+        .contact-form {  
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));  
+            padding: 2.5rem;  
+            border-radius: 25px;  
+            border: 2px solid rgba(245, 158, 11, 0.3);  
+            backdrop-filter: blur(15px);  
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);  
+        }  
+  
+        .form-group {  
+            margin-bottom: 2rem;  
+        }  
+  
+        .form-group input,  
+        .form-group textarea {  
+            width: 100%;  
+            padding: 1.2rem;  
+            border-radius: 12px;  
+            border: 2px solid rgba(245, 158, 11, 0.3);  
+            background: rgba(255, 255, 255, 0.1);  
+            color: var(--white);  
+            font-size: 1.1rem;  
+            transition: all 0.3s ease;  
+            font-family: 'Tajawal', sans-serif;  
+        }  
+  
+        .form-group input:focus,  
+        .form-group textarea:focus {  
+            outline: none;  
+            border-color: var(--gold);  
+            background: rgba(255, 255, 255, 0.15);  
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);  
+        }  
+  
+        .form-group textarea {  
+            resize: vertical;  
+            min-height: 150px;  
+        }  
+  
+        /* Footer */  
+        footer {  
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.8));  
+            padding: 4rem 2rem;  
+            border-top: 2px solid rgba(245, 158, 11, 0.4);  
+            text-align: center;  
+            backdrop-filter: blur(10px);  
+        }  
+  
+        footer p {  
+            margin: 0.8rem 0;  
+            color: var(--text-light);  
+            font-size: 1.1rem;  
+            font-weight: 300;  
+        }  
+  
+        /* Loading Screen */  
+        .loading-screen {  
+            position: fixed;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            background: linear-gradient(135deg, var(--royal-blue) 0%, #0c4a6e 100%);  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+            justify-content: center;  
+            z-index: 2000;  
+            transition: opacity 0.6s ease, visibility 0.6s ease;  
+        }  
+  
+        .loading-spinner {  
+            width: 80px;  
+            height: 80px;  
+            border: 5px solid rgba(245, 158, 11, 0.3);  
+            border-top: 5px solid var(--gold);  
+            border-radius: 50%;  
+            animation: spin 1s linear infinite;  
+            margin-bottom: 2.5rem;  
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);  
+        }  
+  
+        @keyframes spin {  
+            0% { transform: rotate(0deg); }  
+            100% { transform: rotate(360deg); }  
+        }  
+  
+        /* Scroll Progress Indicator */  
+        .scroll-progress {  
+            position: fixed;  
+            top: 0;  
+            left: 0;  
+            width: 0%;  
+            height: 4px;  
+            background: linear-gradient(to right, var(--gold), var(--gold-light));  
+            z-index: 1001;  
+            transition: width 0.1s ease;  
+        }  
+  
+        /* Responsive Design */  
+        @media (max-width: 768px) {  
+            .menu-toggle {  
+                display: block;  
+            }  
+  
+            nav ul {  
+                display: none;  
+                position: absolute;  
+                top: 100%;  
+                right: 0;  
+                background: rgba(30, 58, 138, 0.95);  
+                width: 100%;  
+                flex-direction: column;  
+                padding: 1.5rem 0;  
+                backdrop-filter: blur(10px);  
+                border-top: 1px solid rgba(245, 158, 11, 0.3);  
+            }  
+  
+            nav ul.show {  
+                display: flex;  
+            }  
+  
+            nav ul li {  
+                text-align: center;  
+                padding: 0.8rem 0;  
+            }  
+  
+            .hero-content {  
+                grid-template-columns: 1fr;  
+                text-align: center;  
+                gap: 3rem;  
+            }  
+  
+            .hero-text h1 {  
+                font-size: 2.8rem;  
+            }  
+  
+            .hero-text p {  
+                font-size: 1.2rem;  
+            }  
+  
+            .motto {  
+                font-size: 1.4rem;  
+            }  
+  
+            .levels-grid {  
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));  
+            }  
+  
+            .btn {  
+                display: block;  
+                margin: 0.8rem auto;  
+                width: 85%;  
+            }  
+  
+            .hero-3d {  
+                height: 350px;  
+            }  
+        }  
+  
+        @media (max-width: 480px) {  
+            .hero-text h1 {  
+                font-size: 2.2rem;  
+            }  
+  
+            .hero-text p {  
+                font-size: 1.1rem;  
+            }  
+  
+            section {  
+                padding: 5rem 1rem;  
+            }  
+  
+            .section-title h2 {  
+                font-size: 2.3rem;  
+            }  
+  
+            .levels-grid {  
+                grid-template-columns: repeat(2, 1fr);  
+            }  
+  
+            .info-grid, .cards, .news-grid {  
+                grid-template-columns: 1fr;  
+            }  
+  
+            .contact-container {  
+                grid-template-columns: 1fr;  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+    <!-- Scroll Progress Indicator -->  
+    <div class="scroll-progress" id="scrollProgress"></div>  
+      
+    <!-- Animated Background Particles -->  
+    <div class="particles" id="particles"></div>  
+      
+    <!-- Floating Icons -->  
+    <div class="floating-icons">  
+        <div class="floating-icon" style="top: 15%; right: 20%; animation-delay: 0s;"><i class="fas fa-graduation-cap"></i></div>  
+        <div class="floating-icon" style="top: 25%; left: 15%; animation-delay: 2s;"><i class="fas fa-book-open"></i></div>  
+        <div class="floating-icon" style="bottom: 20%; right: 25%; animation-delay: 4s;"><i class="fas fa-users"></i></div>  
+        <div class="floating-icon" style="bottom: 30%; left: 20%; animation-delay: 6s;"><i class="fas fa-building"></i></div>  
+        <div class="floating-icon" style="top: 35%; right: 30%; animation-delay: 1s;"><i class="fas fa-chalkboard-teacher"></i></div>  
+        <div class="floating-icon" style="bottom: 10%; left: 25%; animation-delay: 3s;"><i class="fas fa-laptop"></i></div>  
+    </div>  
+  
+    <!-- Loading Screen -->  
+    <div class="loading-screen" id="loadingScreen">  
+        <div class="loading-spinner"></div>  
+        <h2 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, var(--gold), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ثانوية الشريف الإدريسي</h2>  
+        <p style="font-size: 1.3rem; margin-top: 1rem; color: var(--text-light);">الجعيدات، رحامنة، مراكش</p>  
+    </div>  
+  
+    <!-- Header -->  
+    <header>  
+        <div class="header-container">  
+            <div class="logo">ثانوية الشريف الإدريسي</div>  
+            <button class="menu-toggle" id="menuToggle">  
+                <i class="fas fa-bars"></i>  
+            </button>  
+            <nav>  
+                <ul id="navMenu">  
+                    <li><a href="#home" class="active">الرئيسية</a></li>  
+                    <li><a href="#about">من نحن</a></li>  
+                    <li><a href="#general">معلومات عامة</a></li>  
+                    <li><a href="#admissions">التسجيل</a></li>  
+                    <li><a href="#news">الأخبار والفعاليات</a></li>  
+                    <li><a href="#gallery">المعرض</a></li>  
+                    <li><a href="#contact">اتصل بنا</a></li>  
+                </ul>  
+            </nav>  
+        </div>  
+    </header>  
+  
+    <!-- Hero Section -->  
+    <section class="hero" id="home">  
+        <div class="hero-content">  
+            <div class="hero-text">  
+                <h1>ثانوية الشريف الإدريسي</h1>  
+                <p>الجعيدات، رحامنة، مراكش، المغرب</p>  
+                <p class="motto">العلم نور، والتعليم رسالة</p>  
+                  
+                <div class="registration-notice">  
+                    <h3>تنبيه هام للتسجيل</h3>  
+                    <p>التسجيل متاح طيلة شهر شتنبر</p>  
+                </div>  
+                  
+                <div class="levels">  
+                    <h3>المستويات الدراسية</h3>  
+                    <div class="levels-grid">  
+                        <div class="level-item">أولى إعدادي</div>  
+                        <div class="level-item">ثانية إعدادي</div>  
+                        <div class="level-item">ثالثة إعدادي</div>  
+                        <div class="level-item">جذع مشترك</div>  
+                        <div class="level-item">أولى باك</div>  
+                        <div class="level-item">ثانية باك</div>  
+                    </div>  
+                </div>  
+                  
+                <div>  
+                    <a href="#about" class="btn btn-primary">اكتشف المدرسة</a>  
+                    <a href="#admissions" class="btn btn-secondary">سجل الآن</a>  
+                </div>  
+            </div>  
+            <div class="hero-3d">  
+                <div class="school-building">  
+                    <div class="building-roof"></div>  
+                    <div class="building-main">  
+                        <div class="window"></div>  
+                        <div class="window"></div>  
+                        <div class="window"></div>  
+                        <div class="window"></div>  
+                        <div class="window"></div>  
+                        <div class="window"></div>  
+                        <div class="student"></div>  
+                        <div class="student"></div>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
+    </section>  
+  
+    <!-- About Section -->  
+    <section id="about">  
+        <div class="section-title">  
+            <h2>من نحن</h2>  
+        </div>  
+        <div class="about-content">  
+            <p>تأسست ثانوية الشريف الإدريسي في الجعيدات بإقليم رحامنة كمؤسسة تعليمية رائدة تسعى إلى توفير بيئة تعليمية متميزة تجمع بين الأصالة والمعاصرة. نلتزم بتقديم تعليم عالي الجودة يركز على تنمية المهارات الأكاديمية والشخصية للطلاب.</p>  
+            <p>مهمتنا هي إعداد جيل من المتعلمين القادرين على المساهمة الفعالة في تنمية المجتمع، من خلال منهج تعليمي متوازن يجمع بين العلوم الحديثة والقيم الأخلاقية.</p>  
+            <div class="schedule">  
+                <h3>مفتوح طوال أيام الأسبوع</h3>  
+                <p>ما عدا يوم الأحد</p>  
+            </div>  
+        </div>  
+    </section>  
+  
+    <!-- General Information Section -->  
+    <section id="general">  
+        <div class="section-title">  
+            <h2>معلومات عامة</h2>  
+        </div>  
+        <div class="general-info">  
+            <p>تتميز ثانوية الشريف الإدريسي بالتزامها الراسخ بتقديم تعليم متكامل يجمع بين التميز الأكاديمي والتنمية الشخصية والاجتماعية للطلاب. نؤمن بأن التعليم ليس مجرد اكتساب المعرفة، بل هو عملية شاملة لتنمية الشخصية وبناء القيم.</p>  
+              
+            <div class="info-grid">  
+                <div class="info-item">  
+                    <i class="fas fa-chalkboard-teacher"></i>  
+                    <h3>الهيئة التدريسية</h3>  
+                    <p>كوادر تعليمية مؤهلة وذات خبرة عالية في مجالات تخصصها</p>  
+                </div>  
+                <div class="info-item">  
+                    <i class="fas fa-laptop"></i>  
+                    <h3>الوسائل التعليمية</h3>  
+                    <p>مختبرات حديثة ومجهزة بأحدث التقنيات والتجهيزات</p>  
+                </div>  
+                <div class="info-item">  
+                    <i class="fas fa-book"></i>  
+                    <h3>المكتبة</h3>  
+                    <p>مكتبة غنية بالمراجع والكتب العلمية والأدبية</p>  
+                </div>  
+                <div class="info-item">  
+                    <i class="fas fa-dumbbell"></i>  
+                    <h3>الأنشطة الرياضية</h3>  
+                    <p>مرافق رياضية متكاملة لتنمية القدرات البدنية</p>  
+                </div>  
+                <div class="info-item">  
+                    <i class="fas fa-palette"></i>  
+                    <h3>الأنشطة الثقافية</h3>  
+                    <p>نوادٍ ثقافية وفنية لتنمية المواهب والقدرات الإبداعية</p>  
+                </div>  
+                <div class="info-item">  
+                    <i class="fas fa-leaf"></i>  
+                    <h3>البيئة المدرسية</h3>  
+                    <p>فضاء أخضر واسع يوفر بيئة تعلم صحية ومريحة</p>  
+                </div>  
+            </div>  
+        </div>  
+    </section>  
+  
+    <!-- Admissions Section -->  
+    <section id="admissions">  
+        <div class="section-title">  
+            <h2>التسجيل</h2>  
+        </div>  
+        <div class="cards">  
+            <div class="card">  
+                <i class="fas fa-file-alt"></i>  
+                <h3>المستندات المطلوبة</h3>  
+                <p>نسخة من شهادة الميلاد، نسخة من بطاقة التعريف الوطنية للوالدين، شهادة مدرسية سابقة</p>  
+            </div>  
+            <div class="card">  
+                <i class="fas fa-calendar-alt"></i>  
+                <h3>فترات التسجيل</h3>  
+                <p>التسجيل متاح طيلة شهر شتنبر لكل سنة دراسية</p>  
+            </div>  
+            <div class="card">  
+                <i class="fas fa-graduation-cap"></i>  
+                <h3>المستويات الدراسية</h3>  
+                <p>أولى إعدادي، ثانية إعدادي، ثالثة إعدادي، جذع مشترك، أولى باك، ثانية باك</p>  
+            </div>  
+        </div>  
+    </section>  
+  
+    <!-- News Section -->  
+    <section id="news">  
+        <div class="section-title">  
+            <h2>الأخبار والفعاليات</h2>  
+        </div>  
+        <div class="news-grid">  
+            <div class="news-item">  
+                <div class="news-date">  
+                    <i class="fas fa-bell"></i>  
+                    <span>15 أكتوبر 2024</span>  
+                </div>  
+                <h3>انطلاق السنة الدراسية الجديدة</h3>  
+                <p>بدأت الدراسة رسمياً في جميع المستويات الدراسية</p>  
+            </div>  
+            <div class="news-item">  
+                <div class="news-date">  
+                    <i class="fas fa-bell"></i>  
+                    <span>20 سبتمبر 2024</span>  
+                </div>  
+                <h3>يوم الأبواب المفتوحة</h3>  
+                <p>دعوة لأولياء الأمور لزيارة المدرسة والتعرف على المرافق</p>  
+            </div>  
+            <div class="news-item">  
+                <div class="news-date">  
+                    <i class="fas fa-bell"></i>  
+                    <span>5 سبتمبر 2024</span>  
+                </div>  
+                <h3>ورشة عمل لأولياء الأمور</h3>  
+                <p>حول أهمية الدعم الأسري في النجاح الدراسي</p>  
+            </div>  
+        </div>  
+    </section>  
+  
+    <!-- Gallery Section -->  
+    <section id="gallery">  
+        <div class="section-title">  
+            <h2>المعرض</h2>  
+        </div>  
+        <div class="gallery">  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+            <div class="gallery-item"><i class="fas fa-camera"></i></div>  
+        </div>  
+    </section>  
+  
+    <!-- Contact Section -->  
+    <section id="contact">  
+        <div class="section-title">  
+            <h2>اتصل بنا</h2>  
+        </div>  
+        <div class="contact-container">  
+            <div class="contact-info">  
+                <div class="contact-item">  
+                    <i class="fas fa-map-marker-alt"></i>  
+                    <div class="contact-details">  
+                        <h3>العنوان</h3>  
+                        <p>الجعيدات، إقليم رحامنة، مراكش، المغرب</p>  
+                    </div>  
+                </div>  
+                <div class="contact-item">  
+                    <i class="fas fa-phone"></i>  
+                    <div class="contact-details">  
+                        <h3>الهاتف</h3>  
+                        <p>+212 524 00 00 00</p>  
+                    </div>  
+                </div>  
+                <div class="contact-item">  
+                    <i class="fas fa-envelope"></i>  
+                    <div class="contact-details">  
+                        <h3>البريد الإلكتروني</h3>  
+                        <p>contact@alidrissi.ma</p>  
+                    </div>  
+                </div>  
+            </div>  
+            <div class="contact-form">  
+                <h3 style="color: var(--gold); text-align: center; margin-bottom: 2rem; font-size: 1.8rem; font-weight: 700;">أرسل رسالة</h3>  
+                <div class="form-group">  
+                    <input type="text" placeholder="اسمك الكامل" required>  
+                </div>  
+                <div class="form-group">  
+                    <input type="email" placeholder="بريدك الإلكتروني" required>  
+                </div>  
+                <div class="form-group">  
+                    <textarea placeholder="رسالتك" required></textarea>  
+                </div>  
+                <button class="btn btn-primary" style="width: 100%;">إرسال الرسالة</button>  
+            </div>  
+        </div>  
+    </section>  
+  
+    <!-- Footer -->  
+    <footer>  
+        <p>© 2024 ثانوية الشريف الإدريسي - الجعيدات، رحامنة، مراكش، المغرب</p>  
+        <p>مفتوح طوال أيام الأسبوع ما عدا يوم الأحد</p>  
+    </footer>  
+  
+    <script>  
+        // Create animated particles  
+        function createParticles() {  
+            const particlesContainer = document.getElementById('particles');  
+            const particleCount = 50;  
+              
+            for (let i = 0; i < particleCount; i++) {  
+                const particle = document.createElement('div');  
+                particle.className = 'particle';  
+                particle.style.left = Math.random() * 100 + '%';  
+                particle.style.animationDelay = Math.random() * 15 + 's';  
+                particle.style.animationDuration = (10 + Math.random() * 20) + 's';  
+                particle.style.opacity = Math.random() * 0.5 + 0.2;  
+                particlesContainer.appendChild(particle);  
+            }  
+        }  
+  
+        // Loading Screen  
+        document.addEventListener('DOMContentLoaded', function() {  
+            createParticles();  
+              
+            setTimeout(function() {  
+                document.getElementById('loadingScreen').style.opacity = '0';  
+                document.getElementById('loadingScreen').style.visibility = 'hidden';  
+            }, 2500);  
+        });  
+  
+        // Mobile Menu Toggle  
+        document.getElementById('menuToggle').addEventListener('click', function() {  
+            document.getElementById('navMenu').classList.toggle('show');  
+        });  
+  
+        // Smooth Scrolling  
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {  
+            anchor.addEventListener('click', function (e) {  
+                e.preventDefault();  
+                document.getElementById('navMenu').classList.remove('show');  
+                  
+                const target = document.querySelector(this.getAttribute('href'));  
+                if (target) {  
+                    window.scrollTo({  
+                        top: target.offsetTop - 90,  
+                        behavior: 'smooth'  
+                    });  
+                }  
+            });  
+        });  
+  
+        // Active Navigation and Scroll Progress  
+        window.addEventListener('scroll', function() {  
+            // Scroll Progress  
+            const scrollTop = window.pageYOffset;  
+            const docHeight = document.body.offsetHeight - window.innerHeight;  
+            const scrollPercent = scrollTop / docHeight;  
+            const scrollPercentRounded = Math.round(scrollPercent * 100);  
+            document.getElementById('scrollProgress').style.width = scrollPercentRounded + '%';  
+              
+            // Active Navigation  
+            const sections = document.querySelectorAll('section');  
+            const navLinks = document.querySelectorAll('nav a');  
+              
+            let current = 'home';  
+              
+            sections.forEach(section => {  
+                const sectionTop = section.offsetTop - 150;  
+                const sectionHeight = section.clientHeight;  
+                  
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {  
+                    current = section.getAttribute('id');  
+                }  
+            });  
+              
+            navLinks.forEach(link => {  
+                link.classList.remove('active');  
+                if (link.getAttribute('href') === '#' + current) {  
+                    link.classList.add('active');  
+                }  
+            });  
+        });  
+  
+        // Form Submission  
+        document.querySelector('.contact-form button').addEventListener('click', function(e) {  
+            e.preventDefault();  
+            const btn = this;  
+            btn.innerHTML = 'جاري الإرسال...';  
+            btn.disabled = true;  
+              
+            setTimeout(function() {  
+                alert('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت ممكن.');  
+                document.querySelector('.contact-form form').reset();  
+                btn.innerHTML = 'إرسال الرسالة';  
+                btn.disabled = false;  
+            }, 1500);  
+        });  
+    </script>  
+</body>  
+</html>  
+  
+   
